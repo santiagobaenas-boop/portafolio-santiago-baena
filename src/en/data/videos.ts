@@ -7,19 +7,17 @@ export interface Video {
   categoria: VideoCategory;
   descripcion: string;
   src: string;   // Cloudinary video URL
-  thumb: string; // Cloudinary thumbnail URL (so_2 = frame at 2s)
+  thumb: string; // Cloudinary thumbnail URL
   año: number;
   destacado?: boolean;
 }
 
 const CDN = 'https://res.cloudinary.com/dav1lmcsh/video/upload';
-const FOLDER = 'videos_portafolio';
 
-function cdn(filename: string) {
-  const name = filename.replace(/ /g, '_');
+function cdn(publicId: string) {
   return {
-    src: `${CDN}/${FOLDER}/${name}`,
-    thumb: `${CDN}/so_2,f_jpg,q_auto/${FOLDER}/${name}.jpg`,
+    src: `${CDN}/q_auto/${publicId}.mp4`,
+    thumb: `${CDN}/so_2,f_jpg,q_auto/${publicId}.jpg`,
   };
 }
 
@@ -31,7 +29,7 @@ export const videos: Video[] = [
     categoria: 'Reels',
     descripcion:
       'Compilation of the best 3D animation, VFX, and editing projects from Dynasty Studio during 2025. Creative direction and editing.',
-    ...cdn('Reel 2025 dynasty.MOV'),
+    ...cdn('Reel_2025_dynasty_xgtrje'),
     año: 2025,
     destacado: true,
   },
@@ -42,7 +40,7 @@ export const videos: Video[] = [
     categoria: 'Automotive',
     descripcion:
       '3D animation and automotive reel for BMW. Modeling, cinematic lighting, and editing for product campaign.',
-    ...cdn('reelbmw.MP4'),
+    ...cdn('reelbmw_ipyvr8'),
     año: 2024,
     destacado: true,
   },
@@ -53,7 +51,7 @@ export const videos: Video[] = [
     categoria: 'Automotive',
     descripcion:
       '3D animation reel for Porsche at Poblautos dealership. Vehicle visualization and editing for point of sale.',
-    ...cdn('ReelPorschepoblautos.mp4'),
+    ...cdn('ReelPorschepoblautos_bimaas'),
     año: 2024,
     destacado: true,
   },
@@ -64,7 +62,7 @@ export const videos: Video[] = [
     categoria: 'Automotive',
     descripcion:
       'Commercial video with 3D animation for the Yamaha Crypton FINN. Creative direction, motion, and final editing from Dynasty Studio.',
-    ...cdn('crypton.MP4'),
+    ...cdn('crypton_ibehzh'),
     año: 2023,
     destacado: true,
   },
@@ -75,7 +73,7 @@ export const videos: Video[] = [
     categoria: 'Automotive',
     descripcion:
       'Photorealistic 3D animation for the Yamaha R15. High-fidelity modeling, studio lighting, and product editing.',
-    ...cdn('yamaha r15.MP4'),
+    ...cdn('yamaha_r15_vjpedn'),
     año: 2023,
   },
   {
@@ -85,7 +83,7 @@ export const videos: Video[] = [
     categoria: 'Automotive',
     descripcion:
       '3D animation for the Yamaha NMAX scooter. Modeling, rendering with PBR materials, and editing for digital campaign.',
-    ...cdn('Nmax.MP4'),
+    ...cdn('Nmax_lm9vuk'),
     año: 2023,
   },
   {
@@ -95,7 +93,7 @@ export const videos: Video[] = [
     categoria: 'Brand',
     descripcion:
       'Main brand identity video for Guapo Furever, a canine care brand. Creative direction, editing, and motion design.',
-    ...cdn('guapo furever.MOV'),
+    ...cdn('guapo_furever_vtwn7k'),
     año: 2022,
     destacado: true,
   },
@@ -106,7 +104,7 @@ export const videos: Video[] = [
     categoria: 'Brand',
     descripcion:
       'Brand content piece for Guapo Furever. Vol. 1 — editing and production for social media.',
-    ...cdn('guapo furever 1.MOV'),
+    ...cdn('guapo_furever_1_qhriep'),
     año: 2022,
   },
   {
@@ -116,7 +114,7 @@ export const videos: Video[] = [
     categoria: 'Brand',
     descripcion:
       'Brand content piece for Guapo Furever. Vol. 3 — editing and production for social media.',
-    ...cdn('guapo furever 3.MOV'),
+    ...cdn('guapo_furever_3_qp2eqj'),
     año: 2022,
   },
   {
@@ -126,7 +124,7 @@ export const videos: Video[] = [
     categoria: 'Brand',
     descripcion:
       'Brand content piece for Guapo Furever. Vol. 4 — editing and production for social media.',
-    ...cdn('guapo furever 4.MOV'),
+    ...cdn('guapo_furever_4_ndo3od'),
     año: 2022,
   },
   {
@@ -136,7 +134,7 @@ export const videos: Video[] = [
     categoria: 'Commercial',
     descripcion:
       'Audiovisual content for Frisby, a Colombian fried chicken chain. Editing, motion, and production for digital campaign.',
-    ...cdn('frisby.MP4'),
+    ...cdn('frisby_yqkveh'),
     año: 2023,
   },
   {
@@ -146,7 +144,7 @@ export const videos: Video[] = [
     categoria: 'Commercial',
     descripcion:
       'Institutional video for Williams Cancer Institute. Audiovisual production and editing for health and corporate communication campaign.',
-    ...cdn('williams cancer.MOV'),
+    ...cdn('williams_cancer_zepw9b'),
     año: 2023,
   },
   {
@@ -155,7 +153,7 @@ export const videos: Video[] = [
     categoria: 'Content',
     descripcion:
       '3D motion design animation for a digital content piece. Product modeling and animation with photorealistic render.',
-    ...cdn('coin.MP4'),
+    ...cdn('coin_jqcwyv'),
     año: 2023,
   },
 ];
