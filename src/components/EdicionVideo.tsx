@@ -29,12 +29,11 @@ function VideoCard({
     >
       {/* 16:9 thumbnail area */}
       <div className="relative aspect-video bg-surface2 overflow-hidden">
-        <video
+        <img
           className="w-full h-full object-cover"
-          preload="metadata"
-          playsInline
-          muted
-          src={`/assets/portafolio videos santiago baena/${video.src}`}
+          src={video.thumb}
+          alt={video.titulo}
+          loading="lazy"
         />
         {/* Overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" />

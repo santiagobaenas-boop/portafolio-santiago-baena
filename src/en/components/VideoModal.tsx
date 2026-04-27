@@ -52,7 +52,7 @@ export default function VideoModal({ video, onClose }: Props) {
                 controls
                 playsInline
                 preload="metadata"
-                src={`/assets/portafolio videos santiago baena/${video.src}`}
+                src={video.src}
               >
                 Your browser does not support HTML5 video.
               </video>
