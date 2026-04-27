@@ -1,0 +1,185 @@
+@import '@fontsource/syne/400.css';
+@import '@fontsource/syne/600.css';
+@import '@fontsource/syne/700.css';
+@import '@fontsource/syne/800.css';
+@import '@fontsource/dm-mono/300.css';
+@import '@fontsource/dm-mono/400.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ───────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: #0d0d0d;
+  color: #f0ede8;
+  font-family: 'DM Mono', monospace;
+  font-weight: 300;
+  overflow-x: hidden;
+  line-height: 1.6;
+  cursor: none;
+}
+
+* { cursor: none !important; }
+
+img, video { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+button { cursor: none; border: none; background: none; font-family: inherit; }
+
+/* ── Grain overlay ──────────────────────────────────── */
+#grain {
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  opacity: 0.045;
+  pointer-events: none;
+  z-index: 9998;
+  animation: grain-anim 8s steps(10) infinite;
+}
+
+@keyframes grain-anim {
+  0%   { transform: translate(0, 0); }
+  10%  { transform: translate(-5%, -10%); }
+  20%  { transform: translate(-15%, 5%); }
+  30%  { transform: translate(7%, -25%); }
+  40%  { transform: translate(-5%, 25%); }
+  50%  { transform: translate(-15%, 10%); }
+  60%  { transform: translate(15%, 0%); }
+  70%  { transform: translate(0%, 15%); }
+  80%  { transform: translate(3%, 35%); }
+  90%  { transform: translate(-10%, 10%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ── Custom cursor ──────────────────────────────────── */
+.cursor-dot {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  background: #c8c4bc;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s ease, opacity 0.3s ease;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(200, 196, 188, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+
+/* ── Scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #0d0d0d; }
+::-webkit-scrollbar-thumb { background: #252525; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #4a4845; }
+
+/* ── Section label (// prefix) ─────────────────────── */
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #4a4845;
+  display: block;
+  margin-bottom: 16px;
+}
+
+/* ── Accent vertical line ───────────────────────────── */
+.accent-line {
+  border-left: 1.5px solid #c8c4bc;
+  padding-left: 1.25rem;
+}
+
+/* ── Container ──────────────────────────────────────── */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 1.25rem; }
+}
+
+/* ── Card base ──────────────────────────────────────── */
+.card {
+  background: #141414;
+  border: 1px solid #252525;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.card:hover {
+  border-color: #c8c4bc;
+  transform: scale(1.02);
+}
+
+/* ── Filter button ──────────────────────────────────── */
+.filter-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border: 1px solid #252525;
+  color: #8a8680;
+  background: transparent;
+  transition: all 0.25s ease;
+}
+.filter-btn:hover, .filter-btn.active {
+  border-color: #c8c4bc;
+  color: #f0ede8;
+}
+
+/* ── Skill chip ─────────────────────────────────────── */
+.skill-chip {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  border: 1px solid #252525;
+  color: #8a8680;
+  background: transparent;
+  transition: all 0.25s ease;
+}
+.skill-chip:hover {
+  border-color: #c8c4bc;
+  color: #f0ede8;
+}
+
+/* ── Modal backdrop ─────────────────────────────────── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

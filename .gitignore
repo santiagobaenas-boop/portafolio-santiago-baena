@@ -1,0 +1,7 @@
+node_modules
+dist
+.DS_Store
+*.local
+
+# Large binary assets — serve from CDN in production
+public/assets/portafolio videos santiago baena/
