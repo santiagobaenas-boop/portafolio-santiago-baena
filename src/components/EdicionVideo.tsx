@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 import { motion } from 'framer-motion';
 import { videos, type Video, type VideoCategory } from '../data/videos';
 import VideoModal from './VideoModal';
@@ -19,6 +19,8 @@ function VideoCard({
   video: Video;
   onClick: () => void;
 }) {
+  const [thumbError, setThumbError] = useState(false);
+
   return (
     <button
       onClick={onClick}
@@ -29,12 +31,22 @@ function VideoCard({
     >
       {/* 16:9 thumbnail area */}
       <div className="relative aspect-video bg-surface2 overflow-hidden">
-        <img
-          className="w-full h-full object-cover"
-          src={video.thumb}
-          alt={video.titulo}
-          loading="lazy"
-        />
+        {!thumbError ? (
+          <img
+            className="w-full h-full object-cover"
+            src={video.thumb}
+            alt=""
+            loading="lazy"
+            onError={() => setThumbError(true)}
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-surface2">
+            <svg width="32" height="32" viewBox="0 0 16 16" fill="currentColor" className="text-slash opacity-40">
+              <path d="M3 2l10 6-10 6V2z" />
+            </svg>
+          </div>
+        )}
+
         {/* Overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" />
 
@@ -77,6 +89,7 @@ function VideoCard({
 export default function EdicionVideo() {
   const [active, setActive] = useState<'Todos' | VideoCategory>('Todos');
   const [selected, setSelected] = useState<Video | null>(null);
+  const [, startTransition] = useTransition();
 
   const filtered =
     active === 'Todos' ? videos : videos.filter(v => v.categoria === active);
@@ -110,7 +123,7 @@ export default function EdicionVideo() {
           {categories.map(cat => (
             <button
               key={cat}
-              onClick={() => setActive(cat)}
+              onClick={() => startTransition(() => setActive(cat))}
               className={`filter-btn ${active === cat ? 'active' : ''}`}
             >
               {cat}

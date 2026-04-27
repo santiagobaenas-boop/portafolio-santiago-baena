@@ -19,7 +19,7 @@ function cdn(filename: string) {
   const name = filename.replace(/ /g, '_');
   return {
     src: `${CDN}/${FOLDER}/${name}`,
-    thumb: `${CDN}/so_2/${FOLDER}/${name}.jpg`,
+    thumb: `${CDN}/so_2,f_jpg,q_auto/${FOLDER}/${name}.jpg`,
   };
 }
 
